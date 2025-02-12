@@ -1,0 +1,51 @@
+
+CREATE TABLE akib_Employee (
+    id NUMBER PRIMARY KEY,
+    name VARCHAR2(100),
+    position VARCHAR2(50),
+    pay_rate NUMBER(10, 2),
+    pay_type VARCHAR2(20)
+);
+
+-- Create akib_Factory Table
+CREATE TABLE akib_Factory (
+    id NUMBER PRIMARY KEY,
+    city VARCHAR2(100),
+    throughput NUMBER(10, 2)
+);
+
+-- Create akib_AssemblyLine Table with unique foreign key constraint name
+CREATE TABLE akib_AssemblyLine (
+    id NUMBER PRIMARY KEY,
+    factory_id NUMBER,
+    line_number NUMBER,  -- Renamed 'number' to 'line_number'
+    throughput NUMBER(10, 2),
+    CONSTRAINT fk_factory_assembly FOREIGN KEY (factory_id) REFERENCES akib_Factory(id)
+);
+
+-- Create akib_WorksAt Table with unique foreign key constraint names
+CREATE TABLE akib_WorksAt (
+    employee_id NUMBER,
+    factory_id NUMBER,
+    PRIMARY KEY (employee_id, factory_id),
+    CONSTRAINT fk_employee_worksat FOREIGN KEY (employee_id) REFERENCES akib_Employee(id),
+    CONSTRAINT fk_factory_worksat FOREIGN KEY (factory_id) REFERENCES akib_Factory(id)
+);
+
+-- Create akib_Manages Table with unique foreign key constraint names
+CREATE TABLE akib_Manages (
+    manager_id NUMBER,
+    factory_id NUMBER,
+    PRIMARY KEY (manager_id, factory_id),
+    CONSTRAINT fk_manager_manages FOREIGN KEY (manager_id) REFERENCES akib_Employee(id),
+    CONSTRAINT fk_factory_manages FOREIGN KEY (factory_id) REFERENCES akib_Factory(id)
+);
+
+-- Create akib_Supervises Table with unique foreign key constraint names
+CREATE TABLE akib_Supervises (
+    supervisor_id NUMBER,
+    supervisee_id NUMBER,
+    PRIMARY KEY (supervisor_id, supervisee_id),
+    CONSTRAINT fk_supervisor_supervises FOREIGN KEY (supervisor_id) REFERENCES akib_Employee(id),
+    CONSTRAINT fk_supervisee_supervises FOREIGN KEY (supervisee_id) REFERENCES akib_Employee(id)
+);
