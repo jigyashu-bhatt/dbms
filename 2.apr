@@ -1,0 +1,20 @@
+create table coustomer with attributes custid,name and country 
+1 select count (costid ) , counting from coustomers group b cont.
+2 select cont(costid), countyes 
+CREATE TABLE customer (
+    custid INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    country VARCHAR(50)
+);
+
+INSERT INTO customer (name, country) VALUES
+('John Smith', 'USA'),
+('Maria Garcia', 'Spain'),
+('Li Wei', 'China'),
+('Emma Johnson', 'Canada'),
+('Ahmed Hassan', 'Egypt'),
+('Sophie Martin', 'France'),
+('Raj Patel', 'India'),
+('Anna Müller', 'Germany'),
+('David Kim', 'South Korea'),
+('Olivia Brown', 'UK');
